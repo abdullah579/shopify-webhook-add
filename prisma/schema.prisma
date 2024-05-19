@@ -26,6 +26,7 @@ model Session {
 
 model CustomerPoint {
   id Int @id @default(autoincrement())
-  customerId BigInt
+  customerFirstName String? @default("First")
+  customerLastName String? @default("Last")
   points Int @default(0)
 }

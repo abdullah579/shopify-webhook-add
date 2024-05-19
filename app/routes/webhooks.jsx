@@ -20,18 +20,12 @@ export const action = async ({ request }) => {
         console.log("-------hit customer webhook--------");
         console.log(payload);
 
-        const res = await db.CustomerPoint.upsert({
-          where: {
-            id: 1,
-            customerId: payload.id
-          },
-          create: {
-            customerId: payload.id,
-            points: 100
-          },
-          update: {
-            points: 100
-          },
+        const res = await db.CustomerPoint.create({
+          data: {
+            customerFirstName: payload.first_name,
+            customerLastName: payload.last_name,
+            points: 100,
+          }
         });
 
         if(res){
