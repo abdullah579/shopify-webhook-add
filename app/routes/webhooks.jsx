@@ -1,5 +1,9 @@
 import { authenticate, sessionStorage } from "../shopify.server";
 import db from "../db.server";
+import { json } from '@remix-run/node';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const action = async ({ request }) => {
   const { topic, shop, session, admin, payload } = await authenticate.webhook(request);
@@ -31,6 +35,14 @@ export const action = async ({ request }) => {
 
         if(res){
           console.log("RESSSSSSSSS", res);
+
+          const data = await resend.emails.send({
+            from: 'Acme <onboarding@resend.dev>',
+            to: ['dones9069@gmail.com'],
+            subject: 'Hello world',
+            html: '<strong>It works!</strong>',
+          });      
+
           return new Response("Success!", { status: 200 });
         }
         console.log("-------hit customer webhook end--------");

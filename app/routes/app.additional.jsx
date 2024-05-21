@@ -10,6 +10,11 @@ import {
 } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
 import {authenticate} from "../shopify.server";
+import { Resend } from 'resend';
+import sendgrid from '@sendgrid/mail';
+
+// const resend = new Resend(process.env.RESEND_API_KEY);
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
 
 export async function loader({request}){
   const {admin, session } = await authenticate.admin(request)
@@ -23,6 +28,24 @@ export async function loader({request}){
   const customers = await response.json();
   // console.log("ffff ", response);
   console.log("wwww ", customers);
+
+  // const data = await resend.emails.send({
+  //   from: 'App <onboarding@resend.dev>',
+  //   to: ['dofffff9@gmail.com'],
+  //   subject: 'Hello world',
+  //   html: '<strong>It works!</strong>',
+  // });
+  // console.log("DATA: ", data);
+
+  const options = {
+    from: 'you@example.com',
+    to: 'user@gmail.com',
+    subject: 'hello world',
+    html: '<strong>It works!</strong>',
+  };
+  
+  const data = sendgrid.send(options);
+  console.log(data);
 
   return null;
 }

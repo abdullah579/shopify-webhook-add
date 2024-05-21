@@ -83,10 +83,10 @@ export const action = async ({ request }) => {
   );
   const variantResponseJson = await variantResponse.json();
 
-  const orderCreate = "customers/create";
+  const customerCreate = "customers/create";
   const ordersCreateExist = await admin.rest.resources.Webhook.count({
     session: session,
-    topic: orderCreate,
+    topic: customerCreate,
   });
 
   console.log("RESULT",ordersCreateExist.count === 0)
@@ -95,8 +95,8 @@ export const action = async ({ request }) => {
     console.log("INNNN");
     const webhook = new admin.rest.resources.Webhook({session: session});
 
-    webhook.address = "https://5ef9-103-203-94-109.ngrok-free.app/webhooks";
-    webhook.topic = orderCreate;
+    webhook.address = "https://e672-103-203-94-109.ngrok-free.app/webhooks";
+    webhook.topic = customerCreate;
     webhook.format = "json";
     await webhook.save({
       update: true,
