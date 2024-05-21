@@ -24,6 +24,7 @@ export const action = async ({ request }) => {
           data: {
             customerFirstName: payload.first_name,
             customerLastName: payload.last_name,
+            email: payload.email,
             points: 100,
           }
         });

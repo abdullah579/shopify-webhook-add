@@ -28,5 +28,6 @@ model CustomerPoint {
   id Int @id @default(autoincrement())
   customerFirstName String? @default("First")
   customerLastName String? @default("Last")
+  email String?
   points Int @default(0)
 }
