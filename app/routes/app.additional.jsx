@@ -12,9 +12,9 @@ import { TitleBar } from "@shopify/app-bridge-react";
 import {authenticate} from "../shopify.server";
 import { Resend } from 'resend';
 import sendgrid from '@sendgrid/mail';
+import { json } from "@remix-run/node";
 
-// const resend = new Resend(process.env.RESEND_API_KEY);
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function loader({request}){
   const {admin, session } = await authenticate.admin(request)
@@ -26,26 +26,25 @@ export async function loader({request}){
   });
 
   const customers = await response.json();
-  // console.log("ffff ", response);
   console.log("wwww ", customers);
+
+  // const storefront_access_token = new admin.rest.resources.StorefrontAccessToken({session: session});
+
+  // storefront_access_token.title = "Test";
+  // await storefront_access_token.save({
+  //   update: true,
+  // });
+
+  // console.log("SSSSSS ", JSON.stringify(storefront_access_token));
 
   // const data = await resend.emails.send({
   //   from: 'App <onboarding@resend.dev>',
-  //   to: ['dofffff9@gmail.com'],
-  //   subject: 'Hello world',
-  //   html: '<strong>It works!</strong>',
+  //   to: ['dones9069@gmail.com'],
+  //   subject: 'Test Email',
+  //   html: '<strong>It works! Email Sent</strong>',
   // });
   // console.log("DATA: ", data);
 
-  const options = {
-    from: 'you@example.com',
-    to: 'user@gmail.com',
-    subject: 'hello world',
-    html: '<strong>It works!</strong>',
-  };
-  
-  const data = sendgrid.send(options);
-  console.log(data);
 
   return null;
 }

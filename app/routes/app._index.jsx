@@ -95,7 +95,7 @@ export const action = async ({ request }) => {
     console.log("INNNN");
     const webhook = new admin.rest.resources.Webhook({session: session});
 
-    webhook.address = "https://e672-103-203-94-109.ngrok-free.app/webhooks";
+    webhook.address = "https://eagle-ace-blindly.ngrok-free.app/webhooks";
     webhook.topic = customerCreate;
     webhook.format = "json";
     await webhook.save({
