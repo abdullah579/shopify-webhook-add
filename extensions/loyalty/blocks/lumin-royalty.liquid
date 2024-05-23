@@ -1,0 +1,63 @@
+<button is="loyal-button">
+    <img src="{{ "crown.png" | asset_img_url: '25px' }}" height="45" width="45" loading="lazy"/>
+</button> 
+
+<style>
+    button[is="loyal-button"] {
+        position: fixed;
+        bottom: 15px; 
+        left: 15px; 
+        background-color: #f1f1f1; 
+        border: none;
+        padding: 25px; 
+        border-radius: 100px; 
+        cursor: pointer;
+    }
+</style>
+
+
+<div class="lumin-page">
+    <div class="Card">
+        <p class="white-heading">Unlock Rewards with </p>
+        <h2 class="white-heading"> ABC Loyalty</h2>
+        {%- render 'wave' -%} 
+    </div>
+    <div class="cardOne">
+        <h3 class="heading"> Become A VIP </h3> 
+        <p> Earn Rewards. Points, discounts, free shipments, VIP badges and many more </p> 
+        <button class="join">Join Now
+        </button>
+    
+        <p> Already have an account? <span class="sign-in" > Sign in </span> </p>
+        <div class="border-btm"> 
+        </div>
+    </div> 
+
+    <div class="cardTwo">
+        <h3 class="heading"> Rewards & Redeem </h3> 
+        <p> Earn Rewards. Points, discounts, free shipments, VIP badges and many more </p> 
+        <button class="Redeem">Rewards {%- render 'arrow' -%} 
+        </button>
+        <button class="Redeem">Redeem {%- render 'arrow' -%} 
+        </button>
+    </div>
+    <div class="luminBtm">
+        <p class= "copyright"> Powered by Lumin Loyalty</p>  
+    </div>
+</div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Unlock Rewards",
+    "target": "body",
+    "stylesheet": "lumin.css",
+    "javascript": "lumin.js",
+    "settings": []
+  }
+  
+  
+{% endschema %}

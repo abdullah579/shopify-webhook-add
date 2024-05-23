@@ -1,0 +1,74 @@
+
+<button is="loyal-button">
+    <img src="{{ "medal.png" | asset_img_url: '25px' }}" height="45" width="45" loading="lazy"/>
+</button> 
+
+<style>
+    button[is="loyal-button"] {
+        position: fixed;
+        bottom: 15px; 
+        right: 15px; 
+        background-color: #fff;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); 
+        border: none;
+        padding: 20px; 
+        border-radius: 100px; 
+        cursor: pointer;
+    }
+</style>
+
+
+<div class="lumin-page">
+    <div class="Card">
+        <h2 class="white-heading"> {{ customer.first_name }} {{ customer.last_name }}</h2>
+        <p class="white-heading"> ID: 12345678 </p>
+        {%- render 'wave' -%} 
+    </div>
+    <div class="pointButton">
+        <p>Points:5000</p>
+        <div class="pointRating">
+           
+        </div>
+        <div class="pointStar">
+            <button class="silver"> Silver </button> 
+            <button class="silver"> Gold </button> 
+            <button class="silver"> Platinum </button> 
+            <button class="silver"> VIP </button> 
+        </div>
+    </div>
+    {% if customer %}
+        <h2>Welcome back, {{ customer.first_name }} {{ customer.last_name }}!</h2>
+        <p>Email: {{ customer.email }}</p>
+    {% else %}
+        <p>Please log in to see your account details.</p>
+    {% endif %}
+    <div class="cardOne">
+        <button class="Redeem">{%- render 'reward' -%}  Rewards {%- render 'arrow' -%} 
+        </button>
+        <button class="Redeem">{%- render 'coin' -%}  Earn {%- render 'arrow' -%} 
+        </button>
+        <button class="Redeem">{%- render 'gift' -%}  Redeem {%- render 'arrow' -%} 
+        </button>
+        <button class="Redeem">{%- render 'activities' -%}  Recent activites {%- render 'arrow' -%} 
+        </button>
+    </div> 
+    <div class="luminBtm">
+        <p class= "copyright"> Powered by Lumin Loyalty</p>  
+    </div>
+</div>
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Earn Points",
+    "target": "body",
+    "stylesheet": "point.css",
+    "javascript": "lumin.js",
+    "settings": []
+  }
+  
+  
+{% endschema %}

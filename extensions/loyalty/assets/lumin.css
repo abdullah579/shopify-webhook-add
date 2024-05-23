@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.show {
+    display: block !important; 
+}
+
+.lumin-page {
+    background-color: #f1f1f1;
+    display: none;
+    border-radius: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 15%;
+    z-index: 99;
+    max-width: 400px;
+}
+
+.floating-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.cardOne{
+    background-color: #fff;
+    padding: 10px;
+    margin: 25px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.cardTwo{
+    background-color: #fff;
+    padding: 10px;
+    margin: 25px;
+    border-radius: 10px;
+    border: 1px solid #d1d1d1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.join {
+    padding: 15px 50px;
+    border: none;
+    border-radius: 100px;
+    background-color: #4378ff;
+    color: #fff;
+    font-size: 16px;
+}
+.Redeem {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 100px;
+    background-color: #fff;
+    font-size: 16px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 200px;
+}
+
+.border-btm {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 57px;
+    left: 0;
+    background-color: #d1d1d1;
+}
+
+.sign-in {
+    color: #3828ff;
+}
+
+.luminBtm {
+    background-color: #fff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.copyright {
+    margin-bottom: 0;
+    padding: 15px;
+    border-top: 1px solid #d1d1d1;
+}
+
+.Card {
+    background-color: #4378ff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    height: 220px;
+}
+
+.white-heading {
+    color: white;
+    margin-top: 0;
+    padding-top: 15px;
+}

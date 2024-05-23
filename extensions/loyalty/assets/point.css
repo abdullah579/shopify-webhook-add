@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.show {
+    display: block !important; 
+}
+
+.lumin-page {
+    background-color: #f1f1f1;
+    display: none;
+    border-radius: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 20%;
+    right: 15%;
+    z-index: 99;
+    width: 400px;
+}
+
+.cardOne{
+    padding: 10px;
+    margin: 25px;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.join {
+    padding: 15px 50px;
+    border: none;
+    border-radius: 100px;
+    background-color: #4378ff;
+    color: #fff;
+    font-size: 16px;
+}
+.Redeem {
+    padding: 10px 0;
+    border: none;
+    border-radius: 2px;
+    background-color: #fff;
+    font-size: 16px;
+    border: 1px solid #d1d1d1;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 330px;
+}
+
+.Redeem svg:last-child {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.luminBtm {
+    background-color: #fff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.copyright {
+    margin-bottom: 0;
+    padding: 15px;
+    border-top: 1px solid #d1d1d1;
+}
+
+.Card {
+    background-color: #4378ff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    height: 215px;
+}
+
+.floating-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.white-heading {
+    color: white;
+    margin-top: 0;
+    padding-top: 15px;
+}
+
+.loyalty-icon {
+    margin: 0 10px;
+}
+
+.arrow-icon {
+    margin-left: 100px;
+}
+
+
+.silver {
+    border: 1px solid #d1d1d1;
+    padding: 4px 15px;
+    border-radius: 100px;
+    margin: 0 9px;
+}
+
+.pointButton {
+    position: relative;
+}
+
+.pointRating {
+    position: absolute;
+    width: 82%;
+    top: 30px;
+    left: 35px;
+    height: 4px;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+}
+.pointButton::after {
+    position: absolute;
+    content: '';
+    width: 30%;
+    top: 30px;
+    border-radius: 5px;
+    left: 35px;
+    height: 4px;
+    background-color: #3251a4;
+}
+
