@@ -1,0 +1,41 @@
+import { URL } from 'url';
+import { json } from "@remix-run/node";
+import db from "../../db.server";
+
+export async function loader({ request }){
+
+  console.log("HIT Done");
+
+  const url = new URL(request.url);
+  console.log("path name: ", url.pathname, url);
+  const pathname = url.pathname.replace('/app_proxy', '');
+
+  // Handle the request, possibly by fetching data from your own API or performing other logic
+  const data = await fetchYourDataFunction(pathname);
+
+  const customer = await db.CustomerPoint.findMany({
+    where: {
+      email: 'customer@point.com'
+    },
+    select: {
+        id: true,
+        customerFirstName: true,
+        customerLastName: true,
+        email: true,
+        points: true,
+    }
+  });
+
+  console.log(customer);
+
+  // Return the data as JSON
+  return json(customer);
+
+};
+
+async function fetchYourDataFunction(path) {
+  // Your logic to fetch data based on the path
+  return { message: `Handled proxy request for path: ${path}` };
+}
+
+  

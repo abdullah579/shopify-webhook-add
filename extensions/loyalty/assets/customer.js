@@ -1,44 +1,46 @@
 // const fetchCustomerByEmail = async (email) => {
-//     const query = `
-//       query {
-//         customer(id: "gid://shopify/Customer/${email}") {
-//           id
-//           firstName
-//           lastName
-//           email
-//         }
-//       }
-//     `;
   
 //     try {
-//       const response = await fetch('https://manupulation-store.myshopify.com/api/graphql', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'X-Shopify-Storefront-Access-Token': 'bc014535341d033f7d466e10e64bd510',
-//         },
-//         body: JSON.stringify({ query }),
-//       });
+//       const response = await fetch('https://manupulation-store.myshopify.com/apps/conn-user');
 
 //       console.log("RRRR", response);
   
 //       if (!response.ok) {
 //         throw new Error('Failed to fetch customer by email');
 //       }
-  
-//       const { data } = await response.json();
-//       return data;
+
+//       return response;
 //     } catch (error) {
 //       console.log('Error fetching customer by EMAIL:', error);
 //       return { error: 'Error fetching customer by email' };
 //     }
-//   };
+// };
+
+document.addEventListener("DOMContentLoaded", function() {
+  fetch('/apps/conn-user', {
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log("DDD", data);
+    })
+    .catch(error => {
+      console.log('Error fetching data:', error);
+    });
+});
   
-//   // Usage
-//   const email = '7365505253601';
-//   fetchCustomerByEmail(email)
-//     .then(data => console.log('Customer data:', data))
-//     .catch(error => console.error('Error:', error));
+  // Usage
+  // fetchCustomerByEmail(email)
+  //   .then(response => response.json())
+  //   .then(data => console.log('Customer data:', data))
+  //   .catch(error => console.log('Error:', error.message));
 
 // const accessToken = 'shpua_07176bb46e7428d952b25684e8c77c32'; // Replace with your access token
 // const shopUrl = 'manupulation-store.myshopify.com'; // Replace with your shop URL
@@ -61,27 +63,4 @@
 // .catch(error => {
 //   console.error('Error fetching customer information:', error);
 // });
-
-// Import the Prisma client
-import { PrismaClient } from '@prisma/client';
-
-// Create an instance of the Prisma client
-const prisma = new PrismaClient();
-
-// Fetch customer data
-const getCustomerByEmail = async (email) => {
-  try {
-    const customer = await prisma.CustomerPoint.findUnique({
-      where: {
-        email: email,
-      },
-    });
-    return customer;
-  } catch (error) {
-    console.error('Error fetching customer by email:', error);
-    throw new Error('Error fetching customer by email');
-  }
-};
-
-getCustomerByEmail("asdfsgfsdf@sdfg.dfgs");
 

@@ -22,4 +22,29 @@ class PartyButton extends HTMLButtonElement {
   }
   
   customElements.define('loyal-button', PartyButton, { extends: "button" });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    fetch('/apps/conn-user', {
+        headers: {
+          'ngrok-skip-browser-warning': 'true'
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("DDD", data);
+        const customerData = data[0];
+        console.log(customerData);
+        const result = "Points: " + customerData.points;
+        console.log("dddddooocccc",document.getElementById('cus_point'));
+        document.getElementById('cus_point').innerText = result;
+      })
+      .catch(error => {
+        console.log('Error fetching data:', error);
+      });
+  });
   

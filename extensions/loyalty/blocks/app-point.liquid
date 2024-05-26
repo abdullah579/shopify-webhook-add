@@ -25,7 +25,11 @@
         {%- render 'wave' -%} 
     </div>
     <div class="pointButton">
-        <p>Points:5000</p>
+        {% if customer %}
+            <p id="cus_point">Points:5000</p>
+        {% else %}
+            <p>Points:5000</p>
+        {% endif %}
         <div class="pointRating">
            
         </div>

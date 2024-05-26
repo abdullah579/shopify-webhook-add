@@ -1,6 +1,6 @@
 import { json } from '@remix-run/node';
 import { URL } from 'url';
-import db from "../db.server";
+import db from "../../db.server";
 
 
 export async function loader({ request }){
