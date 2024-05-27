@@ -3,7 +3,7 @@
 client_id = "efa2391e3ab7ea411b8e74566ce610b3"
 name = "webhook-app"
 handle = "webhook-app-36"
-application_url = "https://2dc6-103-203-94-109.ngrok-free.app"
+application_url = "https://ec0d-103-203-94-109.ngrok-free.app"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_customers,read_orders,unauthenticated_read_checkouts,unauthentica
 
 [auth]
 redirect_urls = [
-  "https://2dc6-103-203-94-109.ngrok-free.app/auth/callback",
-  "https://2dc6-103-203-94-109.ngrok-free.app/auth/shopify/callback",
-  "https://2dc6-103-203-94-109.ngrok-free.app/api/auth/callback"
+  "https://ec0d-103-203-94-109.ngrok-free.app/auth/callback",
+  "https://ec0d-103-203-94-109.ngrok-free.app/auth/shopify/callback",
+  "https://ec0d-103-203-94-109.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]

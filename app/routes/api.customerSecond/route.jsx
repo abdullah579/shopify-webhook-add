@@ -8,14 +8,14 @@ export async function loader({ request }){
 
   const url = new URL(request.url);
   console.log("path name: ", url.pathname, url);
-  const pathname = url.pathname.replace('/app_proxy', '');
+  const customerEmail = url.searchParams.get("email");
 
   // Handle the request, possibly by fetching data from your own API or performing other logic
-  const data = await fetchYourDataFunction(pathname);
+  // const data = await fetchYourDataFunction(pathname);
 
   const customer = await db.CustomerPoint.findMany({
     where: {
-      email: 'customer@point.com'
+      email: customerEmail
     },
     select: {
         id: true,
@@ -26,7 +26,7 @@ export async function loader({ request }){
     }
   });
 
-  console.log(customer);
+  console.log("CUSTOMER --->>>",customer);
 
   // Return the data as JSON
   return json(customer);

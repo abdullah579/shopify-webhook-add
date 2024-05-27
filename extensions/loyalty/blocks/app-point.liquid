@@ -1,7 +1,7 @@
 
 <button is="loyal-button">
     <img src="{{ "medal.png" | asset_img_url: '25px' }}" height="45" width="45" loading="lazy"/>
-</button> 
+</button>
 
 <style>
     button[is="loyal-button"] {
@@ -18,61 +18,22 @@
 </style>
 
 
-<div class="lumin-page">
-    <div class="Card">
-        <h2 class="white-heading"> {{ customer.first_name }} {{ customer.last_name }}</h2>
-        <p class="white-heading"> ID: 12345678 </p>
-        {%- render 'wave' -%} 
-    </div>
-    <div class="pointButton">
-        {% if customer %}
-            <p id="cus_point">Points:5000</p>
-        {% else %}
-            <p>Points:5000</p>
-        {% endif %}
-        <div class="pointRating">
-           
-        </div>
-        <div class="pointStar">
-            <button class="silver"> Silver </button> 
-            <button class="silver"> Gold </button> 
-            <button class="silver"> Platinum </button> 
-            <button class="silver"> VIP </button> 
-        </div>
-    </div>
-    {% if customer %}
-        <h2>Welcome back, {{ customer.first_name }} {{ customer.last_name }}!</h2>
-        <p>Email: {{ customer.email }}</p>
-    {% else %}
-        <p>Please log in to see your account details.</p>
-    {% endif %}
-    <div class="cardOne">
-        <button class="Redeem">{%- render 'reward' -%}  Rewards {%- render 'arrow' -%} 
-        </button>
-        <button class="Redeem">{%- render 'coin' -%}  Earn {%- render 'arrow' -%} 
-        </button>
-        <button class="Redeem">{%- render 'gift' -%}  Redeem {%- render 'arrow' -%} 
-        </button>
-        <button class="Redeem">{%- render 'activities' -%}  Recent activites {%- render 'arrow' -%} 
-        </button>
-    </div> 
-    <div class="luminBtm">
-        <p class= "copyright"> Powered by Lumin Loyalty</p>  
-    </div>
-</div>
-
-
-
+{% if customer %}
+    <script>
+        window.customerEmail = {{ customer.email | json }};
+    </script>
+    {% render 'loggedIn' %}
+{% else %}
+    {% render 'loggedOut' %}
+{% endif %}
 
 
 {% schema %}
-  {
+    {
     "name": "Earn Points",
     "target": "body",
     "stylesheet": "point.css",
     "javascript": "lumin.js",
     "settings": []
-  }
-  
-  
+    }
 {% endschema %}
