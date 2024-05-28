@@ -26,7 +26,8 @@ class PartyButton extends HTMLButtonElement {
   document.addEventListener("DOMContentLoaded", function() {
     if(window.customerEmail){
       console.log("EEEMMIILL ", window.customerEmail);
-      fetch('/apps/conn-user?email=' + window.customerEmail , {
+      const param = 'event=findCustomer&email=' + window.customerEmail;
+      fetch('/apps/conn-user?' + param, {
           headers: {
             'ngrok-skip-browser-warning': 'true'
           }

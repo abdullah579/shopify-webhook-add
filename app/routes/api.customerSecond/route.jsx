@@ -7,15 +7,22 @@ export async function loader({ request }){
   console.log("HIT Done");
 
   const url = new URL(request.url);
-  console.log("path name: ", url.pathname, url);
-  const customerEmail = url.searchParams.get("email");
+  const event = url.searchParams.get("event");
 
-  // Handle the request, possibly by fetching data from your own API or performing other logic
-  // const data = await fetchYourDataFunction(pathname);
+  let data;
+  
+  if(event == 'findCustomer'){
+    const customerEmail = url.searchParams.get("email");
+    data = await getCustomerDetailByEmail(customerEmail);
+  }
 
+  return data;
+};
+
+async function getCustomerDetailByEmail(email) {
   const customer = await db.CustomerPoint.findMany({
     where: {
-      email: customerEmail
+      email: email
     },
     select: {
         id: true,
@@ -28,14 +35,7 @@ export async function loader({ request }){
 
   console.log("CUSTOMER --->>>",customer);
 
-  // Return the data as JSON
   return json(customer);
-
-};
-
-async function fetchYourDataFunction(path) {
-  // Your logic to fetch data based on the path
-  return { message: `Handled proxy request for path: ${path}` };
 }
 
   
