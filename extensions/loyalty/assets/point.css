@@ -12,10 +12,13 @@ body {
     border-radius: 20px;
     text-align: center;
     position: fixed;
-    bottom: 20%;
-    right: 15%;
+    height: 70vh;
+    bottom: 10%;
+    right: 0%;
+    transform: translate(-10%, -10%);
     z-index: 99;
     width: 400px;
+    overflow-y: auto;
 }
 
 .cardOne{
@@ -45,6 +48,88 @@ body {
     align-items: center;
     margin-bottom: 15px;
     width: 330px;
+    cursor: pointer;
+}
+
+.Redeem-purchase {
+    border: none;
+    padding: 10px 30px;
+    margin-bottom: 20px;
+}
+
+.Redeem:focus {
+    background-color: aliceblue;
+}
+
+.Redeem .icon {
+    height: 20px;
+    width: 20px;
+}
+
+.box-redeem {
+    background-color: #fff;
+    box-shadow: 0 0 14px rgba(0,0,0,0.25), 0 0 0 rgba(0,0,0,0.22);
+    border-radius: 10px;
+}
+
+p{
+    margin: 0;
+}
+
+.display-redeem {
+    display: flex;
+    align-items: center;
+}
+
+.display-redeem h3 {
+    margin-left: 20px;
+}
+
+
+.purchase-redeem {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.purchase-order {
+    display: flex;
+    align-items: center;
+}
+
+.purchase-redeem-info {
+    display: none;
+}
+.purchase-redeem-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.Redeem-point {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.Redeem-point-underline {
+    border: none;
+    text-decoration: underline;
+    background-color: none;
+    color: #3251a4;
+    cursor: pointer;
+}
+
+.text-blur {
+    opacity: .4;
+    font-size: 10px;
+}
+
+.text-purchase {
+    font-size: 12px;
 }
 
 .Redeem svg:last-child {
@@ -123,4 +208,39 @@ body {
     height: 4px;
     background-color: #3251a4;
 }
+.display-redeem svg {
+    margin-left: 20px;
+}
 
+.purchase-redeem-content-info {
+    text-align: left;
+}
+
+
+.cardOne, .box-redeem {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.slide-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-out {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+#redeem-content {
+    display: none;
+}
+
+
+#back-button-in-redeem {
+    cursor: pointer;
+}
+
+
+.hidden {
+    display: none;
+}
