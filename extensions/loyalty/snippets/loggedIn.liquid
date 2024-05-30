@@ -11,7 +11,7 @@
   </div>
   <div class="pointButton">
     {% if customer %}
-      <p id="cus_point">Points:5000</p>
+      <p id="cus_point"></p>
     {% else %}
       <p>Points:5000</p>
     {% endif %}
@@ -23,15 +23,7 @@
       <button class="silver">VIP</button>
     </div>
   </div>
-  {% if customer %}
-    <h2>
-      Welcome back, {{ customer.first_name }}
-      {{ customer.last_name }}!
-    </h2>
-    <p>Email: {{ customer.email }}</p>
-  {% else %}
-    <p>Please log in to see your account details.</p>
-  {% endif %}
+  
   <div class="cardOne">
     <button id="rewards-button" class="Redeem">
       <svg
@@ -103,11 +95,10 @@
 <div id="redeem-content" style="display: none;">
   <div class="box-redeem">
     <div class="display-redeem">
-      <svg id="back-button-in-redeemSDfggh" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+      <svg id="back-button-in-redeem" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
         <path style="fill:#232326" d="M7.5 19.001l.707-.707L2.914 12.5H24v-1H2.914l5.293-5.293-.707-.707L0 12.5l7.5 7.501z" data-name="Left"/>
       </svg>
-      <h3 id="redeem-point-aaaa">Redeem Points</h3>
-      <button >eredd</button>
+      <h3>Redeem Points</h3>
     </div>
     <div class="purchase-redeem">
       <div class="purchase-redeem-content-info">
@@ -115,21 +106,6 @@
         <p>10 points</p>
       </div>
       <button id="redeem-point-button" class="Redeem-point">Redeem</button>
-      <span id="dddd-ffff">dddd</span>
-    </div>
-
-    <div>
-      <button id="test-btn">tttt</button>
     </div>
   </div>
 </div>
-<script>
-
-  
-  document.addEventListener('DOMContentLoaded', function () {
-
-    
-
-    
-  });
-</script>

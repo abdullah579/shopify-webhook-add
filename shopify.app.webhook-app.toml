@@ -3,7 +3,7 @@
 client_id = "efa2391e3ab7ea411b8e74566ce610b3"
 name = "webhook-app"
 handle = "webhook-app-36"
-application_url = "https://03cd-103-183-107-25.ngrok-free.app"
+application_url = "https://3bbd-103-203-93-230.ngrok-free.app"
 embedded = true
 
 [build]
@@ -13,13 +13,13 @@ include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_customers,read_orders,unauthenticated_read_checkouts,unauthenticated_read_content,unauthenticated_read_customer_tags,unauthenticated_read_customers,unauthenticated_read_product_listings,unauthenticated_read_product_tags,unauthenticated_write_checkouts,unauthenticated_write_customers,write_customers,write_products"
+scopes = "read_customers,read_orders,read_price_rules,unauthenticated_read_checkouts,unauthenticated_read_content,unauthenticated_read_customer_tags,unauthenticated_read_customers,unauthenticated_read_product_listings,unauthenticated_read_product_tags,unauthenticated_write_checkouts,unauthenticated_write_customers,write_customers,write_price_rules,write_products"
 
 [auth]
 redirect_urls = [
-  "https://03cd-103-183-107-25.ngrok-free.app/auth/callback",
-  "https://03cd-103-183-107-25.ngrok-free.app/auth/shopify/callback",
-  "https://03cd-103-183-107-25.ngrok-free.app/api/auth/callback"
+  "https://3bbd-103-203-93-230.ngrok-free.app/auth/callback",
+  "https://3bbd-103-203-93-230.ngrok-free.app/auth/shopify/callback",
+  "https://3bbd-103-203-93-230.ngrok-free.app/api/auth/callback"
 ]
 
 [webhooks]
