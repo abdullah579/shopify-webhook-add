@@ -1,23 +1,38 @@
 import db from "../db.server";
 import { getAccessTokenForShop } from "../service/shop"
 
-export async function action({request}){
+export async function createPirceRule(shop, accessToken, priceRuleBody){
+
     try{
-        const res = await admin.rest.resources.PriceRule.delete({
-            session: session,
-            id: 1555553353953,
-          });
-        console.log("Delete : ", res);
+        const res = await fetch('https://'+shop+'/admin/api/2024-04/price_rules.json', {
+            method: 'POST',
+            headers: {
+              'X-Shopify-Access-Token': accessToken,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(priceRuleBody)
+        });
+    
+        return await res.json();
     }catch(err){
-        console.log("DO IT ",err);
+        console.log("Price Rule Error", err);
     }
 
 }
 
-export async function getTodayDataTimeString(){
-    let date = new Date();
-    let dateString = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + "T" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-
-    console.log("TIME NOW", dateString);
-    return dateString;
+export async function createDiscountCode(shop, accessToken, price_rule_id, discountBody){
+    try{
+        const createDiscount = await fetch('https://'+shop+'/admin/api/2024-04/price_rules/'+price_rule_id+'/discount_codes.json', {
+        method: 'POST',
+        headers: {
+            'X-Shopify-Access-Token': accessToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(discountBody)
+      });
+      
+      return await createDiscount.json();
+    }catch(err){
+        console.lgo("Discount Error: ",err);
+    }
 }

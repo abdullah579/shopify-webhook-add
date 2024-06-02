@@ -2,17 +2,16 @@ import { URL } from 'url';
 import { json } from "@remix-run/node";
 import db from "../../db.server";
 import { findCustomerByEmail } from "../../service/customer";
-import { action } from "../../service/discount";
+import { createPirceRule,createDiscountCode } from "../../service/discount";
 import { getAccessTokenForShop } from "../../service/shop";
-
+import { getTodayDataTimeString,getRandomStrign } from "../../helper";
+ 
 export async function loader({ request }){
-
-  console.log("HIT Done");
 
   const url = new URL(request.url);
   const event = url.searchParams.get("event");
   const shop = url.searchParams.get("shop");
-  console.log(shop);
+  console.log("SHOP: ",shop);
 
   let data;
   
@@ -28,41 +27,55 @@ export async function loader({ request }){
     const customerData = await findCustomerByEmail(customerEmail);
 
     const accessToken = await getAccessTokenForShop(shop);
-    console.log("SACCES: ", accessToken);
+    console.log("Access Token: ", accessToken);
 
     if(redeemPoint <= customerData[0].points){
       console.log("HERE IN", customerData[0]);
-      console.log("UHUJIK IN", 'https://'+shop+'/admin/api/2024-04/price_rules.json');
       const discountAmount = 100;
+      const discount_title = getRandomStrign(8);
 
-      const body = {
+      const priceRuleBody = {
         "price_rule":{
-          "title":"SUMMERSALE10OFF",
+          "title": discount_title,
           "target_type":"line_item",
           "target_selection":"all",
           "allocation_method":"across",
           "value_type":"fixed_amount",
-          "value":"-10.0",
+          "value": "-" + discountAmount,
           "customer_selection":"all",
-          "starts_at":"2024-09-19T17:59:10Z"
+          "starts_at": getTodayDataTimeString()
         }
       };
-      const res = await fetch('https://'+shop+'/admin/api/2024-04/price_rules.json', {
-        method: 'POST',
-        headers: {
-          'X-Shopify-Access-Token': 'shpua_07176bb46e7428d952b25684e8c77c32',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      });
-      console.log("create price rules : ", res);
-    }
-    return data = json({
-      data: {
-        id: 333,
-        name: "eeee"
+
+      const created_price_rules = await createPirceRule(shop, accessToken, priceRuleBody);
+
+      if(created_price_rules){
+        const discountBody = {
+          "discount_code":
+          {
+            "code": discount_title
+          }
+        };
+  
+        const discountCodeCreate = createDiscountCode(shop, accessToken, created_price_rules.price_rule.id, discountBody);
+
+        if(discountCodeCreate){
+          data = json({
+            data: {
+              discountCode: discount_title
+            }
+          })
+        }
       }
-    })
+      
+    }else{
+      data = json({
+        data: {
+          discountCode: 333
+        }
+      })
+    }
+
   }
 
   return data;
