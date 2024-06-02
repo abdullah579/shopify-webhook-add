@@ -110,6 +110,37 @@ function createDiscount(points){
   })
   .then(data => {
     console.log("My Data ",data);
+    const discountCodeShow = `
+    <div class="active-coupon">
+      <div class="active-list active-tool">
+        <div id="cp_to_clb" class="_tooltip">
+          <p id="discount_code" style="margin-right:10px;">${data.data.discountCode}</p>
+          <span class="_tooltiptext">Copy to clipboard</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            fill="#121212BF"
+            version="1.1"
+            id="Capa_1"
+            width="20px"
+            height="20px"
+            viewBox="0 0 40.945 40.945"
+            xml:space="preserve"
+          >
+            <g>
+              <path d="M35.389,9h-6.166V1.5c0-0.827-0.671-1.5-1.5-1.5H15.454c-0.375,0-0.736,0.142-1.013,0.395L4.543,9.457   c-0.31,0.285-0.487,0.688-0.487,1.106v19.882c0,0.826,0.671,1.5,1.5,1.5h6.166v7.5c0,0.826,0.671,1.5,1.5,1.5h22.166   c0.829,0,1.5-0.674,1.5-1.5V10.5C36.889,9.673,36.217,9,35.389,9z M14.318,4.576v5.574H8.229L14.318,4.576z M7.057,28.945V13.15   h8.761c0.829,0,1.5-0.672,1.5-1.5V3h8.905v6h-3.104c-0.375,0-0.735,0.143-1.013,0.396l-9.897,9.063   c-0.31,0.283-0.487,0.687-0.487,1.105v9.381H7.057L7.057,28.945z M21.984,13.576v5.572h-6.086L21.984,13.576z M33.889,37.945   H14.723V22.148h8.762c0.828,0,1.5-0.672,1.5-1.5V12h8.904V37.945z"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <button id="coupon-button" class="Redeem-point">Use It</button>
+    </div>
+    `;
+
+    document.getElementById('coupon_show').innerHTML = discountCodeShow;
+
+    discountCodeCopy(); // Discount Code Copy to Clipboard
+    discountCouponUseIt(); // On click use it now button
   })
   .catch(error => {
     console.log("redeem error: ", error);
@@ -118,8 +149,70 @@ function createDiscount(points){
 
 function redeemPointEventListeners() {
   document.getElementById('redeem-point-button').addEventListener('click', function() {
-    console.log("Redeem Clicked");
     createDiscount(100);
+  });
+}
+
+function discountCodeCopy(){
+  document.getElementById('cp_to_clb').addEventListener('click', function(){
+    let discount_code = document.getElementById('discount_code').innerHTML;
+    copyToClipboard(discount_code);
+  });
+}
+
+function copyToClipboard(text) {
+  // Check if the Clipboard API is available
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      console.log('Text copied to clipboard');
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
+  } else {
+    // Fallback for browsers that do not support the Clipboard API
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';  // Prevent scrolling to bottom of page in MS Edge
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+      const successful = document.execCommand('copy');
+      const msg = successful ? 'Text copied to clipboard' : 'Failed to copy text';
+      console.log(msg);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+    
+    document.body.removeChild(textArea);
+  }
+}
+
+function discountCouponUseIt(){
+  document.getElementById('coupon-button').addEventListener('click', function(){
+    let discount_code = document.getElementById('discount_code').innerHTML;
+
+    if (discount_code) {
+      // Send GET request to "/discount/[discountcode]"
+      fetch(`/discount/${discount_code}`)
+      .then(function() {
+        console.log("Discount Applied!");
+        // After the discount code has been applied, force the cart to update so the discount is visible instantly
+        return fetch('/cart/update.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            updates: {},
+          }),
+        });
+      })
+      .catch(function(error) {
+        console.error('Error:', error);
+      });
+    }
   });
 }
   

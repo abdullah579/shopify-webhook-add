@@ -244,3 +244,61 @@ p{
 .hidden {
     display: none;
 }
+
+.active-list {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.active-list:hover {
+    background-color: #d6d8db;
+}
+
+.active-list {
+    font-size: 14px;
+}
+
+.active-coupon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.active-tool {
+    width: 60%;
+}
+
+._tooltip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    right: 5px;
+  }
+  
+  ._tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.443);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 100%;
+    margin-left: -60px;
+    opacity: 0;
+    padding: 10px;
+    transition: opacity 0.3s;
+  }
+  
+  ._tooltip:hover ._tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
