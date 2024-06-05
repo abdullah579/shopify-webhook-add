@@ -9,6 +9,7 @@ CREATE TABLE `Session` (
     `accessToken` VARCHAR(191) NOT NULL,
     `userId` BIGINT NULL,
 
+    UNIQUE INDEX `Session_shop_key`(`shop`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
